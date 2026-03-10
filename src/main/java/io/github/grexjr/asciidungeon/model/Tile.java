@@ -2,12 +2,15 @@ package io.github.grexjr.asciidungeon.model;
 
 import io.github.grexjr.asciidungeon.constants.CommonConstants;
 
+import static io.github.grexjr.asciidungeon.constants.UIConstants.*;
+import static io.github.grexjr.asciidungeon.constants.UIConstants.RESET;
+
 public class Tile {
     private static final String RESET = "\033[0m";
 
     private final TileType type;
 
-    private String decorations = ""; // Default color
+    private String decorations = ""; // Default format
     private boolean isExplored = false;
 
     ///  Pass in the type, and all information is received from the type enum.
@@ -16,7 +19,7 @@ public class Tile {
     }
 
     public String getFormattedSymbol() {
-        return decorations + type.getSymbol() + RESET;
+        return ESC + decorations + SUFFIX + type.getSymbol() + RESET;
     }
 
     public boolean isPassable() {
@@ -37,7 +40,14 @@ public class Tile {
         isExplored = explored;
     }
 
-    public void addDecoration(String ansiCode) { decorations += ansiCode; }
+    public void addDecoration(String ansiCode){
+        if(this.decorations.isBlank()){
+            this.decorations = ansiCode;
+        } else {
+            this.decorations += DELIMITER + ansiCode;
+        }
+
+    }
 
     public void clearDecorations() { decorations = "";}
 }

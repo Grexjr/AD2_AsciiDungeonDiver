@@ -1,12 +1,12 @@
 package io.github.grexjr.asciidungeon.ui;
 
-import io.github.grexjr.asciidungeon.constants.CommonConstants;
+import io.github.grexjr.asciidungeon.constants.UIConstants;
 
 public class Printer {
 
     //TODO: Is constructor needed here?
 
-    private static final String ESC = CommonConstants.ESC;
+    private static final String ESC = UIConstants.ESC;
 
     private static final String HOME = "H";
 
@@ -34,10 +34,12 @@ public class Printer {
      * Terminal indexed at 1,1, so add one to row and column values.
      * @param row The row to draw at. Assumed to be zero-index
      * @param col The column to draw at. Assumed to be zero-index
-     * @param string The ANSI sequence to draw
+     * @param formattedSymbol The ANSI sequence to draw
      */
-    public void drawAt(int row, int col, String string){
-        render(getMoveToString(row+1,col+1) + string);
+    public void drawAt(int row, int col, String formattedSymbol){
+        String position = getMoveToString(row+1,col+1);
+        String appearance = formattedSymbol;
+        render(position+appearance);
     }
 
     /**

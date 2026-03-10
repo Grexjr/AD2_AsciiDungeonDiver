@@ -1,12 +1,12 @@
 package io.github.grexjr.asciidungeon.ui;
 
-import io.github.grexjr.asciidungeon.constants.CommonConstants;
+import io.github.grexjr.asciidungeon.constants.UIConstants;
 
 public class Formatter {
 
     //TODO: Is constructor needed here?
 
-    private static final String ESC = CommonConstants.ESC;
+    private static final String ESC = UIConstants.ESC;
 
     private static final String RESET = ESC + "0m";
 

@@ -1,5 +1,6 @@
 package io.github.grexjr.asciidungeon.controller;
 
+import io.github.grexjr.asciidungeon.constants.UIConstants;
 import io.github.grexjr.asciidungeon.model.Map;
 import io.github.grexjr.asciidungeon.model.Player;
 import io.github.grexjr.asciidungeon.model.Tile;
@@ -90,6 +91,11 @@ public class Demo {
             int newCol = player.getCol() - 1;
             if(map.getTiles()[player.getRow()][newCol].isPassable())
                 player.setCol(newCol);
+            for(int i = 0; i < map.getRows(); i++){
+                for(int j = 0; j < map.getCols(); j++){
+                    map.getTiles()[i][j].addDecoration(UIConstants.DIM);
+                }
+            }
         }
     }
 

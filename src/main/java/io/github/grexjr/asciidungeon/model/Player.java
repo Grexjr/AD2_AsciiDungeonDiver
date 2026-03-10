@@ -1,10 +1,12 @@
 package io.github.grexjr.asciidungeon.model;
 
-import io.github.grexjr.asciidungeon.constants.CommonConstants;
 import io.github.grexjr.asciidungeon.constants.SpriteConstants;
+import io.github.grexjr.asciidungeon.constants.UIConstants;
+
+import static io.github.grexjr.asciidungeon.constants.UIConstants.*;
 
 public class Player {
-    private static final String DEFAULT_DECOR = "\033[1;97;49m";
+    private static final String DEFAULT_DECOR = BOLD + DELIMITER + CYANHFG;
 
     private int row,col;
     private final String symbol = Character.toString(SpriteConstants.PLAYER);
@@ -43,7 +45,7 @@ public class Player {
     }
 
     public String getFormattedSymbol(){
-        return decoration + symbol + CommonConstants.RESET;
+        return ESC + decoration + SUFFIX + symbol + RESET;
     }
 
     public String getDecoration() {
@@ -51,7 +53,12 @@ public class Player {
     }
 
     public void addDecoration(String ansiCode){
-        decoration += ansiCode;
+        if(this.decoration.isBlank()){
+            this.decoration = ansiCode;
+        } else {
+            this.decoration += DELIMITER + ansiCode;
+        }
+
     }
 
     public void resetDecoration(){
