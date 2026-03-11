@@ -9,7 +9,7 @@ public class CommonConstants {
 
 
     ///  Doesn't make sense to instantiate this class
-    private CommonConstants(){}
+    private CommonConstants(){throw new AssertionError("Class cannot be instantiated!");}
 
 
 

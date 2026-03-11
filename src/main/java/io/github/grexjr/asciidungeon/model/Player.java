@@ -1,13 +1,9 @@
 package io.github.grexjr.asciidungeon.model;
 
-import io.github.grexjr.asciidungeon.constants.SpriteConstants;
-import io.github.grexjr.asciidungeon.constants.UIConstants;
 import io.github.grexjr.asciidungeon.view.Sprite;
 import io.github.grexjr.asciidungeon.view.SpriteType;
 
-import static io.github.grexjr.asciidungeon.constants.UIConstants.*;
-
-public class Player {
+public class Player implements Renderable {
     private final Sprite sprite = new Sprite(SpriteType.PLAYER);
 
     private int row,col;
@@ -34,13 +30,6 @@ public class Player {
         this.col = col;
     }
 
+    @Override
     public Sprite getSprite() { return this.sprite; }
-
-    public void addDecoration(String ansiCode){
-        sprite.addDecoration(ansiCode);
-    }
-
-    public void resetDecoration(){
-        sprite.resetDecoration();
-    }
 }

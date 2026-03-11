@@ -6,7 +6,7 @@ import io.github.grexjr.asciidungeon.view.Sprite;
 import static io.github.grexjr.asciidungeon.constants.UIConstants.*;
 import static io.github.grexjr.asciidungeon.constants.UIConstants.RESET;
 
-public class Tile {
+public class Tile implements Renderable{
     private final Sprite sprite;
     private final TileType type;
 
@@ -18,9 +18,10 @@ public class Tile {
         this.type = type;
     }
 
-    public TileType getType() { return type; }
-
+    @Override
     public Sprite getSprite() { return sprite; }
+
+    public TileType getType() { return type; }
 
     public boolean isPassable() {
         return type.isPassable();
@@ -38,9 +39,4 @@ public class Tile {
         isExplored = explored;
     }
 
-    public void addDecoration(String ansiCode){
-        sprite.addDecoration(ansiCode);
-    }
-
-    public void resetDecoration() { sprite.resetDecoration();}
 }

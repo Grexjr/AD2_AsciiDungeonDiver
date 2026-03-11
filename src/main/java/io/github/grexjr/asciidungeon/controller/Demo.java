@@ -11,6 +11,8 @@ import io.github.grexjr.asciidungeon.view.SpriteType;
 
 import java.io.IOException;
 
+import static io.github.grexjr.asciidungeon.constants.UIConstants.REDHBG;
+
 public class Demo {
 
     private final InputHandler input = new InputHandler();
@@ -78,6 +80,7 @@ public class Demo {
             running = false;
         }
         if(key == 'w' || key == 'W'){
+            player.addDecoration(REDHBG);
             int newRow = player.getRow() - 1;
             if(map.getTiles()[newRow][player.getCol()].isPassable())
                 player.setRow(newRow);
@@ -125,6 +128,9 @@ public class Demo {
                 }
             }
         }
+        map.getTiles()[10][10] = new Tile(new Sprite(SpriteType.TEST),TileType.TEST);
+        map.getTiles()[10][11] = new Tile(new Sprite(SpriteType.TEST),TileType.TEST);
+        map.getTiles()[10][12] = new Tile(new Sprite(SpriteType.TEST),TileType.TEST);
     }
 
     private void setupCharacter(){

@@ -195,7 +195,6 @@ public class Printer {
      */
     private void render(String s){
         System.out.print(s);
-        clearBuffer();
     }
 
 
