@@ -1,6 +1,7 @@
 package io.github.grexjr.asciidungeon.ui;
 
 import io.github.grexjr.asciidungeon.constants.UIConstants;
+import io.github.grexjr.asciidungeon.view.Sprite;
 
 public class Printer {
 
@@ -34,11 +35,11 @@ public class Printer {
      * Terminal indexed at 1,1, so add one to row and column values.
      * @param row The row to draw at. Assumed to be zero-index
      * @param col The column to draw at. Assumed to be zero-index
-     * @param formattedSymbol The ANSI sequence to draw
+     * @param sprite the sprite object to draw
      */
-    public void drawAt(int row, int col, String formattedSymbol){
+    public void drawAt(int row, int col, Sprite sprite){
         String position = getMoveToString(row+1,col+1);
-        String appearance = formattedSymbol;
+        String appearance = sprite.getFormattedSymbol();
         render(position+appearance);
     }
 

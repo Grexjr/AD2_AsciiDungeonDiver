@@ -6,6 +6,8 @@ import io.github.grexjr.asciidungeon.model.Player;
 import io.github.grexjr.asciidungeon.model.Tile;
 import io.github.grexjr.asciidungeon.model.TileType;
 import io.github.grexjr.asciidungeon.ui.Printer;
+import io.github.grexjr.asciidungeon.view.Sprite;
+import io.github.grexjr.asciidungeon.view.SpriteType;
 
 import java.io.IOException;
 
@@ -60,12 +62,12 @@ public class Demo {
                 printer.drawAt(
                         i,
                         j,
-                        map.getTiles()[i][j].getFormattedSymbol()
+                        map.getTiles()[i][j].getSprite()
                 );
             }
         }
         printer.clearBuffer();
-        printer.drawAt(player.getRow(),player.getCol(),player.getFormattedSymbol());
+        printer.drawAt(player.getRow(),player.getCol(),player.getSprite());
     }
 
     private void input() throws IOException{
@@ -116,10 +118,10 @@ public class Demo {
             for(int col = 0; col < map.getCols(); col++){
                 // Draw walls
                 if(row == 0 || row == map.getRows()-1 || col == 0 || col == map.getCols()-1) {
-                    map.getTiles()[row][col] = new Tile(TileType.WALL);
+                    map.getTiles()[row][col] = new Tile(new Sprite(SpriteType.WALL),TileType.WALL);
                 }
                 else{
-                    map.getTiles()[row][col] = new Tile(TileType.FLOOR);
+                    map.getTiles()[row][col] = new Tile(new Sprite(SpriteType.FLOOR),TileType.FLOOR);
                 }
             }
         }

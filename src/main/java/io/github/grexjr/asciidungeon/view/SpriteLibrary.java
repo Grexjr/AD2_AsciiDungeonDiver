@@ -34,13 +34,9 @@ public class SpriteLibrary {
      * @param type The sprite type to retrieve.
      * @return The full ANSI string that builds this character and its formatting
      */
-    public static String getAppearance(SpriteType type){
-        String decoration = styles.getOrDefault(type,"");
-        char symbol = type.getSymbol();
-        return ESC + decoration + SUFFIX + symbol + RESET;
+    public static String getDefaultDecoration(SpriteType type){
+        return styles.getOrDefault(type,"");
     }
-
-
 
 
 
