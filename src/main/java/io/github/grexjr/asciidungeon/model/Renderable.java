@@ -6,20 +6,14 @@ public interface Renderable {
 
     Sprite getSprite();
 
-    /**
-     * Adds a decoration to an object's sprite.
-     * @param decoration The ANSI decorator to add
-     */
-    default void addDecoration(String decoration){
-        getSprite().addDecoration(decoration);
-    }
+    default char getSymbol() { return getSprite().getSymbol(); }
 
-    /**
-     * Resets decorations to their defaults.
-     */
-    default void resetDecoration(){
-        getSprite().resetDecoration();
-    }
+    default String getFullDecoration() { return getSprite().getFullDecoration(); }
 
+    default void addDecoration(String attribute) { getSprite().addDecoration(attribute); }
+
+    default void clearDecoration() { getSprite().clearDecoration(); }
+
+    default void resetDecoration() { getSprite().resetDecoration(); }
 
 }

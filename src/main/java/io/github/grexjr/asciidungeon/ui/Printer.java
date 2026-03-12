@@ -102,7 +102,7 @@ public class Printer {
                             // Movement append
                             .append(ESC).append(r + 1).append(DELIMITER).append(c + 1).append(HOME)
                             // Decoration append, including formatting and color
-                            .append(ESC).append(s.getDecoration()).append(SUFFIX)
+                            .append(ESC).append(s.getFullDecoration()).append(SUFFIX)
                             // Append the symbol
                             .append(s.getSymbol());
                 }

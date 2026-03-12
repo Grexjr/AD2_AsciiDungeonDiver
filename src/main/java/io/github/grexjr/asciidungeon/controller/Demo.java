@@ -1,6 +1,5 @@
 package io.github.grexjr.asciidungeon.controller;
 
-import io.github.grexjr.asciidungeon.constants.UIConstants;
 import io.github.grexjr.asciidungeon.model.Map;
 import io.github.grexjr.asciidungeon.model.Player;
 import io.github.grexjr.asciidungeon.model.Tile;
@@ -11,8 +10,7 @@ import io.github.grexjr.asciidungeon.view.SpriteType;
 
 import java.io.IOException;
 
-import static io.github.grexjr.asciidungeon.constants.UIConstants.REDHBG;
-import static io.github.grexjr.asciidungeon.constants.UIConstants.RESET;
+import static io.github.grexjr.asciidungeon.constants.UIConstants.*;
 
 public class Demo {
 
@@ -78,21 +76,27 @@ public class Demo {
             running = false;
         }
         if(key == 'w' || key == 'W'){
+            player.addDecoration(BLINK);
             int newRow = player.getRow() - 1;
             if(map.getTiles()[newRow][player.getCol()].isPassable())
                 player.setRow(newRow);
         } else if(key == 'd' || key == 'D'){
+            player.addDecoration(BOLD);
             int newCol = player.getCol() + 1;
             if(map.getTiles()[player.getRow()][newCol].isPassable())
                 player.setCol(newCol);
         } else if(key == 's' || key == 'S'){
+            player.addDecoration(GREENBG);
             int newRow = player.getRow() + 1;
             if(map.getTiles()[newRow][player.getCol()].isPassable())
                 player.setRow(newRow);
         } else if(key == 'a' || key == 'A'){
+            player.addDecoration(DIM);
             int newCol = player.getCol() - 1;
             if(map.getTiles()[player.getRow()][newCol].isPassable())
                 player.setCol(newCol);
+        } else if(key == 'p' || key == 'P'){
+            player.getSprite().resetDecoration();
         }
     }
 
