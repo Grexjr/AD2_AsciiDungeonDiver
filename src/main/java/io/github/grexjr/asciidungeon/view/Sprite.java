@@ -21,8 +21,12 @@ public class Sprite {
     }
 
     public String getFormattedSymbol() {
-        return ESC + decoration + SUFFIX + symbol + RESET;
+        return ESC + decoration + SUFFIX + symbol;
     }
+
+    public String getDecoration() { return decoration; }
+
+    public char getSymbol() { return symbol; }
 
     public void addDecoration(String ansiCode){
         if(decoration.isBlank()){

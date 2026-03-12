@@ -8,21 +8,22 @@ public class UIConstants {
     public static final String PREFIX = ESC;
     public static final String SUFFIX = "m";
     public static final String RESET = PREFIX + "0" + SUFFIX;
+    public static final String END = "0m";
     public static final String DELIMITER = ";";
 
-    private static final String HOME = "H";
+    public static final String HOME = "H";
 
-    private static final String MOVE = "%d;%dH";
-    private static final String UP = "%dA";
-    private static final String DOWN = "%dB";
-    private static final String RIGHT = "%dC";
-    private static final String LEFT = "%dD";
+    public static final String MOVE = "%d;%dH";
+    public static final String UP = "%dA";
+    public static final String DOWN = "%dB";
+    public static final String RIGHT = "%dC";
+    public static final String LEFT = "%dD";
 
-    private static final String CLEAR = "2J";
-    private static final String LINE = "2K";
+    public static final String CLEAR = "2J";
+    public static final String LINE = "2K";
 
-    private static final String CURS_SHOW = "?25h";
-    private static final String CURS_HIDE = "?25l";
+    public static final String CURS_SHOW = "?25h";
+    public static final String CURS_HIDE = "?25l";
 
 
     // Foreground Colors
