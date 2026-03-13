@@ -1,0 +1,43 @@
+package io.github.grexjr.asciidungeon.model;
+
+import io.github.grexjr.asciidungeon.model.ai.MovementBehavior;
+import io.github.grexjr.asciidungeon.view.Sprite;
+
+public class Being implements Renderable {
+    private final Sprite sprite;
+    private final MovementBehavior brain;
+
+    private int row, col;
+
+    public Being(BeingType type, int row, int col){
+        sprite = new Sprite(type.getSpriteType());
+        brain = MovementBehavior.get(type.getAI());
+
+        this.row = row;
+        this.col = col;
+    }
+
+    @Override
+    public Sprite getSprite() { return sprite; }
+
+    public int getRow() {
+        return row;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    public int getCol() {
+        return col;
+    }
+
+    public void setCol(int col) {
+        this.col = col;
+    }
+
+    public void move(Map moveableArea){
+        brain.move(this,moveableArea);
+    }
+
+}

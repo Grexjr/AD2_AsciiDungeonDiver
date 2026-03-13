@@ -8,6 +8,7 @@ import io.github.grexjr.asciidungeon.view.SpriteType;
 import java.io.IOException;
 
 import static io.github.grexjr.asciidungeon.constants.UIConstants.*;
+import static io.github.grexjr.asciidungeon.model.BeingType.*;
 
 public class Demo {
 
@@ -15,14 +16,14 @@ public class Demo {
     private final Printer printer = new Printer();
     private final Map map;
     private final Player player;
-    private final Wanderer wanderer;
+    private final Being wanderer;
 
     private boolean running = true;
 
     public Demo() throws IOException {
         this.map = setupDemoWorld();
         this.player = new Player(map.getRows()/2,map.getCols()/2);
-        this.wanderer = new Wanderer(10,15);
+        this.wanderer = new Being(WANDERER,10,15);
     }
 
     // Handle crash, do nothing in shutdown loop to prevent anything crazy
@@ -101,7 +102,7 @@ public class Demo {
     }
 
     private void logic(){
-        wanderer.randomWander(map);
+        wanderer.move(map);
     }
 
     public void end(){
