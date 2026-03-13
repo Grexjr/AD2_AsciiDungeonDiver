@@ -41,8 +41,14 @@ public class Being implements Renderable {
         this.col = col;
     }
 
-    public void move(Map moveableArea){
-        brain.move(this,moveableArea);
+    public void runAI(Map moveableArea){
+        if(brain != null){
+            brain.move(this, moveableArea);
+        }
+    }
+
+    public void teleport(Map map, int nextR, int nextC){
+        brain.attemptMove(this,map,nextR,nextC);
     }
 
 }

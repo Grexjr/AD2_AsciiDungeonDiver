@@ -77,32 +77,20 @@ public class Demo {
             running = false;
         }
         if(key == 'w' || key == 'W'){
-            player.addDecoration(BLINK);
-            int newRow = player.getRow() - 1;
-            if(map.getTiles()[newRow][player.getCol()].isPassable())
-                player.setRow(newRow);
+            player.move(map,player.getRow()-1,player.getCol());
         } else if(key == 'd' || key == 'D'){
-            player.addDecoration(BOLD);
-            int newCol = player.getCol() + 1;
-            if(map.getTiles()[player.getRow()][newCol].isPassable())
-                player.setCol(newCol);
+            player.move(map,player.getRow(),player.getCol()+1);
         } else if(key == 's' || key == 'S'){
-            player.addDecoration(GREENBG);
-            int newRow = player.getRow() + 1;
-            if(map.getTiles()[newRow][player.getCol()].isPassable())
-                player.setRow(newRow);
+            player.move(map,player.getRow()+1,player.getCol());
         } else if(key == 'a' || key == 'A'){
-            player.addDecoration(DIM);
-            int newCol = player.getCol() - 1;
-            if(map.getTiles()[player.getRow()][newCol].isPassable())
-                player.setCol(newCol);
+            player.move(map,player.getRow(),player.getCol()-1);
         } else if(key == 'p' || key == 'P'){
             player.getSprite().resetDecoration();
         }
     }
 
     private void logic(){
-        wanderer.move(map);
+        wanderer.runAI(map);
     }
 
     public void end(){

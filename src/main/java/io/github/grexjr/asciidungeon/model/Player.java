@@ -1,35 +1,17 @@
 package io.github.grexjr.asciidungeon.model;
 
-import io.github.grexjr.asciidungeon.view.Sprite;
-import io.github.grexjr.asciidungeon.view.SpriteType;
+import io.github.grexjr.asciidungeon.model.ai.MovementBehavior;
 
-public class Player implements Renderable {
-    private final Sprite sprite = new Sprite(SpriteType.PLAYER);
+import static io.github.grexjr.asciidungeon.model.BeingType.PLAYER;
 
-    private int row,col;
+public class Player extends Being {
 
-    /// Constructor to put player wherever
     public Player(int row, int col){
-        this.row = row;
-        this.col = col;
+        super(PLAYER,row,col);
     }
 
-    public int getRow() {
-        return row;
+    public void move(Map map, int nextR, int nextC){
+        MovementBehavior.attemptNoBrainMove(this,map,nextR,nextC);
     }
 
-    public void setRow(int row) {
-        this.row = row;
-    }
-
-    public int getCol() {
-        return col;
-    }
-
-    public void setCol(int col) {
-        this.col = col;
-    }
-
-    @Override
-    public Sprite getSprite() { return this.sprite; }
 }
