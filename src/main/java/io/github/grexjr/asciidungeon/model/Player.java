@@ -1,22 +1,12 @@
 package io.github.grexjr.asciidungeon.model;
 
-import io.github.grexjr.asciidungeon.constants.SpriteConstants;
-import io.github.grexjr.asciidungeon.constants.UIConstants;
+import io.github.grexjr.asciidungeon.view.Sprite;
+import io.github.grexjr.asciidungeon.view.SpriteType;
 
-import static io.github.grexjr.asciidungeon.constants.UIConstants.*;
-
-public class Player {
-    private static final String DEFAULT_DECOR = BOLD + DELIMITER + CYANHFG;
+public class Player implements Renderable {
+    private final Sprite sprite = new Sprite(SpriteType.PLAYER);
 
     private int row,col;
-    private final String symbol = Character.toString(SpriteConstants.PLAYER);
-    private String decoration = DEFAULT_DECOR;
-
-    /// Default constructor
-    public Player(){
-        row = 2;
-        col = 2;
-    }
 
     /// Constructor to put player wherever
     public Player(int row, int col){
@@ -40,28 +30,6 @@ public class Player {
         this.col = col;
     }
 
-    public String getSymbol() {
-        return symbol;
-    }
-
-    public String getFormattedSymbol(){
-        return ESC + decoration + SUFFIX + symbol + RESET;
-    }
-
-    public String getDecoration() {
-        return decoration;
-    }
-
-    public void addDecoration(String ansiCode){
-        if(this.decoration.isBlank()){
-            this.decoration = ansiCode;
-        } else {
-            this.decoration += DELIMITER + ansiCode;
-        }
-
-    }
-
-    public void resetDecoration(){
-        decoration = DEFAULT_DECOR;
-    }
+    @Override
+    public Sprite getSprite() { return this.sprite; }
 }

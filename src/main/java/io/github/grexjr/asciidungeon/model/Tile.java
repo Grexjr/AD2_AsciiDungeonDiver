@@ -1,26 +1,27 @@
 package io.github.grexjr.asciidungeon.model;
 
 import io.github.grexjr.asciidungeon.constants.CommonConstants;
+import io.github.grexjr.asciidungeon.view.Sprite;
 
 import static io.github.grexjr.asciidungeon.constants.UIConstants.*;
 import static io.github.grexjr.asciidungeon.constants.UIConstants.RESET;
 
-public class Tile {
-    private static final String RESET = "\033[0m";
-
+public class Tile implements Renderable{
+    private final Sprite sprite;
     private final TileType type;
 
-    private String decorations = ""; // Default format
     private boolean isExplored = false;
 
     ///  Pass in the type, and all information is received from the type enum.
-    public Tile(TileType type){
+    public Tile(Sprite sprite, TileType type) {
+        this.sprite = sprite;
         this.type = type;
     }
 
-    public String getFormattedSymbol() {
-        return ESC + decorations + SUFFIX + type.getSymbol() + RESET;
-    }
+    @Override
+    public Sprite getSprite() { return sprite; }
+
+    public TileType getType() { return type; }
 
     public boolean isPassable() {
         return type.isPassable();
@@ -34,20 +35,8 @@ public class Tile {
         return isExplored;
     }
 
-    public String getDecorations(){return this.decorations;}
-
     public void setExplored(boolean explored) {
         isExplored = explored;
     }
 
-    public void addDecoration(String ansiCode){
-        if(this.decorations.isBlank()){
-            this.decorations = ansiCode;
-        } else {
-            this.decorations += DELIMITER + ansiCode;
-        }
-
-    }
-
-    public void clearDecorations() { decorations = "";}
 }

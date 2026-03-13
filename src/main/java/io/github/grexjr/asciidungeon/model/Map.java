@@ -18,6 +18,7 @@ public class Map {
     public Map(int height, int width){
         this.rows = height;
         this.cols = width;
+        this.tiles = new Tile[this.rows][this.cols];
     }
 
     /**
@@ -27,8 +28,6 @@ public class Map {
 
     public int getRows(){return rows;}
     public int getCols(){return cols;}
-
-
 
 
 }

@@ -1,13 +1,16 @@
 package io.github.grexjr.asciidungeon.controller;
 
-import io.github.grexjr.asciidungeon.constants.UIConstants;
 import io.github.grexjr.asciidungeon.model.Map;
 import io.github.grexjr.asciidungeon.model.Player;
 import io.github.grexjr.asciidungeon.model.Tile;
 import io.github.grexjr.asciidungeon.model.TileType;
 import io.github.grexjr.asciidungeon.ui.Printer;
+import io.github.grexjr.asciidungeon.view.Sprite;
+import io.github.grexjr.asciidungeon.view.SpriteType;
 
 import java.io.IOException;
+
+import static io.github.grexjr.asciidungeon.constants.UIConstants.*;
 
 public class Demo {
 
@@ -19,7 +22,7 @@ public class Demo {
     private boolean running = true;
 
     public Demo() throws IOException {
-        this.map = new Map();
+        this.map = setupDemoWorld();
         this.player = new Player(map.getRows()/2,map.getCols()/2);
     }
 
@@ -37,9 +40,8 @@ public class Demo {
     }
 
     public void start(){
+        printer.clearScreen();
         printer.hideCursor();
-        setupDemoWorld();
-        setupCharacter();
     }
 
     public void run(){
@@ -55,17 +57,15 @@ public class Demo {
     }
 
     private void draw(){
-        for(int i = 0; i < map.getRows(); i++){
-            for(int j = 0; j < map.getCols(); j++){
-                printer.drawAt(
-                        i,
-                        j,
-                        map.getTiles()[i][j].getFormattedSymbol()
-                );
+        // Load all things into the buffer
+        for(int r = 0; r < map.getRows(); r++){
+            for(int c = 0; c < map.getCols(); c++){
+                printer.drawAt(r,c,map.getTiles()[r][c].getSprite());
             }
         }
-        printer.clearBuffer();
-        printer.drawAt(player.getRow(),player.getCol(),player.getFormattedSymbol());
+        printer.drawAt(player.getRow(),player.getCol(),player.getSprite());
+
+        printer.render();
     }
 
     private void input() throws IOException{
@@ -76,26 +76,27 @@ public class Demo {
             running = false;
         }
         if(key == 'w' || key == 'W'){
+            player.addDecoration(BLINK);
             int newRow = player.getRow() - 1;
             if(map.getTiles()[newRow][player.getCol()].isPassable())
                 player.setRow(newRow);
         } else if(key == 'd' || key == 'D'){
+            player.addDecoration(BOLD);
             int newCol = player.getCol() + 1;
             if(map.getTiles()[player.getRow()][newCol].isPassable())
                 player.setCol(newCol);
         } else if(key == 's' || key == 'S'){
+            player.addDecoration(GREENBG);
             int newRow = player.getRow() + 1;
             if(map.getTiles()[newRow][player.getCol()].isPassable())
                 player.setRow(newRow);
         } else if(key == 'a' || key == 'A'){
+            player.addDecoration(DIM);
             int newCol = player.getCol() - 1;
             if(map.getTiles()[player.getRow()][newCol].isPassable())
                 player.setCol(newCol);
-            for(int i = 0; i < map.getRows(); i++){
-                for(int j = 0; j < map.getCols(); j++){
-                    map.getTiles()[i][j].addDecoration(UIConstants.DIM);
-                }
-            }
+        } else if(key == 'p' || key == 'P'){
+            player.getSprite().resetDecoration();
         }
     }
 
@@ -109,20 +110,24 @@ public class Demo {
         printer.showCursor();
     }
 
-    private void setupDemoWorld(){
-        printer.clearScreen();
-        printer.moveToHome();
-        for(int row = 0; row < map.getRows(); row++){
-            for(int col = 0; col < map.getCols(); col++){
-                // Draw walls
-                if(row == 0 || row == map.getRows()-1 || col == 0 || col == map.getCols()-1) {
-                    map.getTiles()[row][col] = new Tile(TileType.WALL);
+    private Map setupDemoWorld(){
+        Map map = new Map();
+        for(int r = 0; r < map.getRows(); r++){
+            for(int c = 0; c < map.getCols(); c++){
+                if(r == 0 || r == map.getRows()-1) {
+                    map.getTiles()[r][c] = new Tile(new Sprite(SpriteType.WALL), TileType.WALL);
                 }
-                else{
-                    map.getTiles()[row][col] = new Tile(TileType.FLOOR);
+                else if(c == 0 || c == map.getCols()-1){
+                    map.getTiles()[r][c] = new Tile(new Sprite(SpriteType.WALL), TileType.WALL);
+                } else if(r == 10 && c == 5){
+                    map.getTiles()[r][c] = new Tile(new Sprite(SpriteType.TEST),TileType.TEST);
+                }
+                else {
+                    map.getTiles()[r][c] = new Tile(new Sprite(SpriteType.FLOOR), TileType.FLOOR);
                 }
             }
         }
+        return map;
     }
 
     private void setupCharacter(){
