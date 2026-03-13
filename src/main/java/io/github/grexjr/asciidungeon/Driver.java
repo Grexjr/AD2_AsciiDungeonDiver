@@ -12,7 +12,7 @@ public class Driver {
 
             demo.start();
             demo.run();
-        } catch (Exception e){
+        } catch (Exception e){ //TODO: Create more specific catches
             System.err.println("FATAL ERROR ON STARTUP: " + e.getMessage());
             e.printStackTrace();
         }

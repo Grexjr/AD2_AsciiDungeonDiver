@@ -11,13 +11,10 @@ public class Printer {
     private static final int HEIGHT = CommonConstants.MAP_HEIGHT;
     private static final int WIDTH = CommonConstants.MAP_WIDTH;
 
-    //TODO: Is constructor needed here?
-
-    private final Formatter formatter = new Formatter();
-
     private Sprite[][] screenBuffer = new Sprite[CommonConstants.MAP_HEIGHT][CommonConstants.MAP_WIDTH];
 
-    public Formatter getFormatter(){return formatter;}
+    ///  Explicit constructor
+    public Printer(){}
 
     // ======================= ACTIONS =======================
     // The void actions of the game. Drawing, moving cursor, etc.

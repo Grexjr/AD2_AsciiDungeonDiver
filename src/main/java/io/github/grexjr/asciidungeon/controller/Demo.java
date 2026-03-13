@@ -119,7 +119,10 @@ public class Demo {
                 }
                 else if(c == 0 || c == map.getCols()-1){
                     map.getTiles()[r][c] = new Tile(new Sprite(SpriteType.WALL), TileType.WALL);
-                } else {
+                } else if(r == 10 && c == 5){
+                    map.getTiles()[r][c] = new Tile(new Sprite(SpriteType.TEST),TileType.TEST);
+                }
+                else {
                     map.getTiles()[r][c] = new Tile(new Sprite(SpriteType.FLOOR), TileType.FLOOR);
                 }
             }
