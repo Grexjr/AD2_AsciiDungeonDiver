@@ -12,6 +12,7 @@ public class SpriteLibrary {
     static {
         // Build all the default decor once at startup
         styles.put(SpriteType.PLAYER,build(BOLD,CYANFG));
+        styles.put(SpriteType.WANDERER,build(BOLD,YELLOWFG));
 
         styles.put(SpriteType.WALL,build());
         styles.put(SpriteType.FLOOR,build());

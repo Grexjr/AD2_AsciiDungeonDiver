@@ -4,6 +4,7 @@ public enum SpriteType {
 
     // Beings
     PLAYER('@'),
+    WANDERER('w'),
 
     // Tiles
     WALL('#'),

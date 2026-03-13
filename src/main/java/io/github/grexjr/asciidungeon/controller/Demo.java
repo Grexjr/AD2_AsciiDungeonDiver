@@ -1,9 +1,6 @@
 package io.github.grexjr.asciidungeon.controller;
 
-import io.github.grexjr.asciidungeon.model.Map;
-import io.github.grexjr.asciidungeon.model.Player;
-import io.github.grexjr.asciidungeon.model.Tile;
-import io.github.grexjr.asciidungeon.model.TileType;
+import io.github.grexjr.asciidungeon.model.*;
 import io.github.grexjr.asciidungeon.ui.Printer;
 import io.github.grexjr.asciidungeon.view.Sprite;
 import io.github.grexjr.asciidungeon.view.SpriteType;
@@ -18,12 +15,14 @@ public class Demo {
     private final Printer printer = new Printer();
     private final Map map;
     private final Player player;
+    private final Wanderer wanderer;
 
     private boolean running = true;
 
     public Demo() throws IOException {
         this.map = setupDemoWorld();
         this.player = new Player(map.getRows()/2,map.getCols()/2);
+        this.wanderer = new Wanderer(10,15);
     }
 
     // Handle crash, do nothing in shutdown loop to prevent anything crazy
@@ -64,6 +63,7 @@ public class Demo {
             }
         }
         printer.drawAt(player.getRow(),player.getCol(),player.getSprite());
+        printer.drawAt(wanderer.getRow(), wanderer.getCol(), wanderer.getSprite());
 
         printer.render();
     }
@@ -101,7 +101,7 @@ public class Demo {
     }
 
     private void logic(){
-
+        wanderer.randomWander(map);
     }
 
     public void end(){
