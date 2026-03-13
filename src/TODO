@@ -1,0 +1,1 @@
+1. Add a null safety check so that if a being goes out of bounds it is not rendered nor is any movement processed

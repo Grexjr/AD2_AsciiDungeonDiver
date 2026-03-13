@@ -8,6 +8,7 @@ public class Being implements Renderable {
     private final MovementBehavior brain;
 
     private int row, col;
+    private boolean isBlocking = true;
 
     public Being(BeingType type, int row, int col){
         sprite = new Sprite(type.getSpriteType());
@@ -31,6 +32,10 @@ public class Being implements Renderable {
     public int getCol() {
         return col;
     }
+
+    public boolean isBlocking() { return isBlocking; }
+
+    public void setBlocking(boolean blocking) { isBlocking = blocking; }
 
     public void setCol(int col) {
         this.col = col;

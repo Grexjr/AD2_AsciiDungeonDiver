@@ -10,6 +10,7 @@ public class Tile implements Renderable{
     private final Sprite sprite;
     private final TileType type;
 
+    private Being occupant = null;
     private boolean isExplored = false;
 
     ///  Pass in the type, and all information is received from the type enum.
@@ -23,20 +24,16 @@ public class Tile implements Renderable{
 
     public TileType getType() { return type; }
 
-    public boolean isPassable() {
-        return type.isPassable();
-    }
+    public Being getOccupant() { return occupant; }
 
-    public String getDescription() {
-        return type.getDescription();
-    }
+    public boolean isPassable() { return type.isPassable(); }
 
-    public boolean isExplored() {
-        return isExplored;
-    }
+    public String getDescription() { return type.getDescription(); }
 
-    public void setExplored(boolean explored) {
-        isExplored = explored;
-    }
+    public boolean isExplored() { return isExplored; }
+
+    public void setOccupant(Being occupier) { occupant = occupier; }
+
+    public void setExplored(boolean explored) { isExplored = explored; }
 
 }
